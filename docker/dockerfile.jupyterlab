@@ -1,0 +1,17 @@
+FROM jupyter/base-notebook:python-3.9.5
+
+ARG PIPENV_VERSION_=2022.6.7
+ENV PIP_NO_CACHE_DIR=false
+ENV PIPENV_INSTALL_TIMEOUT=3000
+
+# Install pipenv and copy pipenv files
+RUN pip install pipenv==${PIPENV_VERSION_}
+COPY ./Pipfile ./Pipfile
+COPY ./Pipfile.lock ./Pipfile.lock
+
+# Install python packages from Pipfile.lock
+RUN pipenv install --system --ignore-pipfile
+
+# Expose Jupyter port & cmd
+EXPOSE 8888
+CMD jupyter lab --ip=* --port=8888 --no-browser --notebook-dir=/opt/app/data --allow-root

@@ -3,6 +3,12 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Jupyter notebook
+src/notebooks/.ipynb_checkpoints
+
+# Python
+.DS_Store
+
 # User-specific files
 *.rsuser
 *.suo
