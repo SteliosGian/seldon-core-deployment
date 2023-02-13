@@ -1,0 +1,17 @@
+apiVersion: machinelearning.seldon.io/v1
+kind: SeldonDeployment
+metadata:
+  name: simple-model
+  namespace: seldon
+spec:
+  name: ml
+  predictors:
+  - componentSpecs:
+      - spec:
+          containers:
+            - name: classifier
+              image: simple_model
+    graph:
+      name: classifier
+    name: default
+    replicas: 1
